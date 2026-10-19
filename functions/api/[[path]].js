@@ -24,8 +24,8 @@ export async function onRequest({request,env}) {
   }
   if(path==='/analytics'&&method==='GET'){
    admin();const total=await env.DB.prepare("SELECT COUNT(*) events,COUNT(DISTINCT ip) visitors,SUM(CASE WHEN event='page_view' THEN 1 ELSE 0 END) page_views FROM analytics_events WHERE created_at>=datetime('now','-30 days')").first();
-   const rows=(await env.DB.prepare('SELECT * FROM analytics_events ORDER BY id DESC LIMIT 200').all()).results;
-   const grouped=async field=>(await env.DB.prepare('SELECT '+field+' label,COUNT(*) count FROM analytics_events GROUP BY '+field+' ORDER BY count DESC LIMIT 12').all()).results;
+   const rows=(await env.DB.prepare("SELECT * FROM analytics_events WHERE created_at>=datetime('now','-30 days') ORDER BY id DESC LIMIT 200").all()).results;
+   const grouped=async field=>(await env.DB.prepare('SELECT '+field+" label,COUNT(*) count FROM analytics_events WHERE created_at>=datetime('now','-30 days') GROUP BY "+field+' ORDER BY count DESC LIMIT 12').all()).results;
    return json({total,rows,devices:await grouped('device'),sources:await grouped('referrer'),actions:await grouped('event'),countries:await grouped('country')});
   }
   if(path==='/chat'&&method==='POST'){
