@@ -16,8 +16,6 @@
     $('detailAdd').onclick=async()=>{
       const button=$('detailAdd');button.disabled=true;
       try{
-        const {user}=await cloudAPI('/auth/me');
-        if(!user){$('detailMessage').innerHTML='Vui lòng <a href="index.html" style="color:var(--primary)">đăng nhập tại cửa hàng</a> trước khi thêm vào giỏ hàng.';return;}
         const saved=localStorage.getItem('anhem_cart');let cart=saved?JSON.parse(saved):[];if(!Array.isArray(cart))cart=[];
         const current=cart.find(item=>String(item.id)===String(p.id)), amount=quantity(), total=(current?Number(current.quantity)||0:0)+amount;
         if(total>max)throw Error('Trong giỏ đã có '+(current?.quantity||0)+' sản phẩm. Tổng số lượng tối đa là '+max+'.');

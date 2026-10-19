@@ -170,7 +170,6 @@
 
     // Add to Cart Function
     function addToCart(product, openDrawer = false) {
-        if (!checkAuthForPurchase()) return;
 
         const existingIndex = cart.findIndex(item => item.id === product.id);
         if (existingIndex > -1) {
