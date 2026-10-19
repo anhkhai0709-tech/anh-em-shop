@@ -18,3 +18,6 @@ Kiểm tra API: pnpm test. Test dùng SQLite bộ nhớ, mật khẩu ngẫu nhi
 6. Người quản trị đăng ký tài khoản mới trên website rồi nâng role bằng D1 console với câu lệnh UPDATE users SET role='admin' WHERE username='TEN_TAI_KHOAN_DA_XAC_NHAN';. Không có mật khẩu quản trị mặc định.
 
 Không commit .env, .dev.vars, .wrangler, database local hoặc token. Thông tin liên hệ mới cần chủ shop cập nhật trước khi kinh doanh. Danh mục ban đầu là sản phẩm mẫu, không phải khách hàng/đơn hàng cũ.
+
+## Thống kê truy cập
+Trang analytics.html dành cho admin. Sự kiện lưu ở D1 analytics_events: trang, nguồn (hostname), thiết bị, trình duyệt, OS, IP từ CF-Connecting-IP, quốc gia/thành phố gần đúng từ request.cf. Không lưu truy vấn tìm kiếm, mật khẩu hay URL referrer đầy đủ. Tự dọn dữ liệu quá 30 ngày khi có sự kiện mới; chỉ truy vấn dữ liệu 30 ngày khi hiển thị. Khách có nút tắt thống kê ở cuối trang.

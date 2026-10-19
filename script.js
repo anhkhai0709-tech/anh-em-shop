@@ -539,6 +539,7 @@
             showToast(`Đã lưu đơn #${savedOrder.order_id.slice(0,8)}. Tổng tiền: ${formatPrice(savedOrder.total_amount)}`);
             let receipt = document.getElementById('orderReceipt');
             if (!receipt) { receipt = document.createElement('p'); receipt.id='orderReceipt'; contactForm.after(receipt); }
+            window.trackShop?.('order_success');
             receipt.innerHTML = `Đặt hàng thành công. <a href="orders.html" style="color:var(--primary);font-weight:700;">Xem đơn hàng và trạng thái duyệt →</a>`;
             contactForm.reset();
             cart = [];

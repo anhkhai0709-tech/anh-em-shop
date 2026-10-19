@@ -1,0 +1,3 @@
+CREATE TABLE IF NOT EXISTS analytics_events (id INTEGER PRIMARY KEY AUTOINCREMENT,event TEXT NOT NULL,path TEXT NOT NULL,referrer TEXT,device TEXT,browser TEXT,os TEXT,ip TEXT,country TEXT,city TEXT,user_id INTEGER,created_at TEXT DEFAULT CURRENT_TIMESTAMP);
+CREATE INDEX IF NOT EXISTS analytics_created ON analytics_events(created_at);
+CREATE INDEX IF NOT EXISTS analytics_event ON analytics_events(event);

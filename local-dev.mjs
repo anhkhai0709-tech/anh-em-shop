@@ -5,6 +5,7 @@ import path from 'node:path';
 import {onRequest} from './functions/api/[[path]].js';
 fs.mkdirSync('.local',{recursive:true});const db=new DatabaseSync('.local/shop.sqlite');
 if(!db.prepare("SELECT name FROM sqlite_master WHERE name='users'").get())db.exec(fs.readFileSync('migrations/0001_init.sql','utf8'));
+db.exec(fs.readFileSync('migrations/0002_analytics.sql','utf8'));
 const wrap=(sql,params=[])=>({bind(...p){return wrap(sql,p)},async first(){return db.prepare(sql).get(...params)||null},async all(){return {results:db.prepare(sql).all(...params)}},async run(){const r=db.prepare(sql).run(...params);return {meta:{changes:Number(r.changes),last_row_id:Number(r.lastInsertRowid)}}}});
 const DB={prepare:wrap,async batch(list){db.exec('BEGIN');try{const r=await Promise.all(list.map(s=>s.run()));db.exec('COMMIT');return r}catch(e){db.exec('ROLLBACK');throw e}}};
 const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.jpg':'image/jpeg','.svg':'image/svg+xml'};

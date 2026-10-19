@@ -5,6 +5,7 @@ import {readFileSync} from 'node:fs';
 import {onRequest,hash} from '../functions/api/[[path]].js';
 import {answerChat} from '../server/ai-chat.js';
 const sqlite=new DatabaseSync(':memory:');sqlite.exec(readFileSync(new URL('../migrations/0001_init.sql',import.meta.url),'utf8'));
+sqlite.exec(readFileSync(new URL('../migrations/0002_analytics.sql',import.meta.url),'utf8'));
 const wrap=(sql,params=[])=>({bind(...p){return wrap(sql,p)},async first(){return sqlite.prepare(sql).get(...params)||null},async all(){return {results:sqlite.prepare(sql).all(...params)}},async run(){const r=sqlite.prepare(sql).run(...params);return {meta:{changes:Number(r.changes),last_row_id:Number(r.lastInsertRowid)}}}});
 const DB={prepare:wrap,async batch(list){sqlite.exec('BEGIN');try{const r=await Promise.all(list.map(s=>s.run()));sqlite.exec('COMMIT');return r}catch(e){sqlite.exec('ROLLBACK');throw e}}};
 const env={DB};
@@ -40,4 +41,13 @@ test('registration, isolation, server prices, permissions, admin CRUD, order app
 test('chat uses own catalog and AI failure falls back safely',async()=>{
  const lookup=await answerChat(env,'Áo phông LV giá bao nhiêu?',null,'test');assert.ok(lookup.products.some(p=>p.id===5));
  const fallback=await answerChat({...env,AI:{run(){throw Error('test')}}},'tư vấn phối đồ đi học',null,'test');assert.equal(fallback.source,'shop');
+});
+
+test('analytics captures trusted network metadata and protects raw IP from public users',async()=>{
+ const req=new Request('https://anhem.test/api/analytics/event',{method:'POST',headers:{'Content-Type':'application/json','CF-Connecting-IP':'192.0.2.10','User-Agent':'Mozilla/5.0 (Windows NT 10.0) Chrome/125'},body:JSON.stringify({event:'page_view',path:'/index.html?secret=ignored',referrer:'https://example.test/path?private=ignored'})});
+ Object.defineProperty(req,'cf',{value:{country:'VN',city:'Test city'}});
+ assert.equal((await onRequest({request:req,env})).status,201);
+ const row=sqlite.prepare('SELECT * FROM analytics_events ORDER BY id DESC').get();assert.equal(row.ip,'192.0.2.10');assert.equal(row.country,'VN');assert.equal(row.device,'Desktop');assert.equal(row.referrer,'example.test');assert.equal(row.path,'/index.html');
+ assert.equal((await call('/analytics')).status,401);
+ assert.equal((await call('/analytics/event','POST',{event:'password',path:'/'})).status,400);
 });

@@ -14,6 +14,20 @@ export async function onRequest({request,env}) {
   const user=token?await env.DB.prepare('SELECT u.id,u.username,u.email,u.role FROM sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=? AND s.expires_at>?').bind(await digest(token),Date.now()).first():null;
   const auth=()=>{if(!user)fail(401,'Vui lòng đăng nhập lại');};
   const admin=()=>{auth();if(user.role!=='admin')fail(403,'Cần quyền quản trị');};
+  if(path==='/analytics/event'&&method==='POST'){
+   const b=await request.json();if(!['page_view','product_view','search','add_cart','checkout','order_success'].includes(b.event))fail(400,'Sự kiện không hợp lệ');
+   const path=text(b.path,180).split('?')[0];if(!/^\/[a-zA-Z0-9_./-]*$/.test(path))fail(400,'Trang không hợp lệ');
+   const ua=request.headers.get('User-Agent')||'',device=/iPad|Tablet/i.test(ua)?'Tablet':/Mobile|Android|iPhone/i.test(ua)?'Mobile':'Desktop',browser=/Edg/i.test(ua)?'Edge':/Firefox/i.test(ua)?'Firefox':/Chrome/i.test(ua)?'Chrome':/Safari/i.test(ua)?'Safari':'Other',os=/Windows/i.test(ua)?'Windows':/Android/i.test(ua)?'Android':/iPhone|iPad/i.test(ua)?'iOS':/Mac OS/i.test(ua)?'macOS':/Linux/i.test(ua)?'Linux':'Other';
+   let referrer='Direct';try{referrer=new URL(b.referrer).hostname.slice(0,150)}catch{}
+   await env.DB.batch([env.DB.prepare('INSERT INTO analytics_events(event,path,referrer,device,browser,os,ip,country,city,user_id) VALUES(?,?,?,?,?,?,?,?,?,?)').bind(b.event,path,referrer,device,browser,os,text(request.headers.get('CF-Connecting-IP'),60)||'Local',text(request.cf?.country,10),text(request.cf?.city,100),user?.id||null),env.DB.prepare("DELETE FROM analytics_events WHERE created_at < datetime('now','-30 days')")]);
+   return json({ok:true},201);
+  }
+  if(path==='/analytics'&&method==='GET'){
+   admin();const total=await env.DB.prepare("SELECT COUNT(*) events,COUNT(DISTINCT ip) visitors,SUM(CASE WHEN event='page_view' THEN 1 ELSE 0 END) page_views FROM analytics_events WHERE created_at>=datetime('now','-30 days')").first();
+   const rows=(await env.DB.prepare('SELECT * FROM analytics_events ORDER BY id DESC LIMIT 200').all()).results;
+   const grouped=async field=>(await env.DB.prepare('SELECT '+field+' label,COUNT(*) count FROM analytics_events GROUP BY '+field+' ORDER BY count DESC LIMIT 12').all()).results;
+   return json({total,rows,devices:await grouped('device'),sources:await grouped('referrer'),actions:await grouped('event'),countries:await grouped('country')});
+  }
   if(path==='/chat'&&method==='POST'){
    const body=await request.json();
    if(typeof body.message!=='string'||!body.message.trim()||body.message.length>500)fail(400,'Nhập câu hỏi từ 1 đến 500 ký tự');
