@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Chi tiết sản phẩm - Anh Em Shop</title>
+  <link rel="icon" href="assets/icons/favicon.svg"><link rel="stylesheet" href="style.css">
+  <style>
+    body{background:#f7f7fc}#productDetail[hidden]{display:none}.detail-main{max-width:1240px;margin:0 auto;padding:36px 24px 80px}.detail-back{display:inline-block;color:var(--text-secondary);margin-bottom:30px}
+    .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}.detail-image{background:white;border:1px solid var(--border);border-radius:24px;overflow:hidden;aspect-ratio:1}.detail-image img{width:100%;height:100%;object-fit:contain;padding:20px}
+    .detail-info h1{font-size:2.2rem;line-height:1.25;margin:0 0 22px}.detail-price{color:var(--primary);font-size:1.9rem;font-weight:800;margin-bottom:20px}.detail-description{color:var(--text-secondary);line-height:1.8;white-space:pre-wrap;margin-bottom:18px}.detail-stock{color:var(--text-secondary);margin-bottom:30px}.detail-quantity{display:flex;align-items:center;gap:16px;margin-bottom:28px}.quantity-control{display:flex;border:1px solid var(--border);border-radius:24px;overflow:hidden}.quantity-control button{width:48px;height:48px;font-size:1.3rem}.quantity-control input{width:64px;text-align:center;border:0;border-left:1px solid var(--border);border-right:1px solid var(--border);font-size:1rem;background:white;appearance:textfield}.quantity-control input::-webkit-inner-spin-button{appearance:none}
+    .detail-add{width:100%;padding:16px;border-radius:32px;background:#151515;color:white;font-size:1rem;font-weight:700}.detail-add:disabled{opacity:.5;cursor:not-allowed}.detail-message{margin-top:16px;line-height:1.7}.detail-actions{display:flex;gap:16px;margin-top:18px;flex-wrap:wrap}.detail-actions a{color:var(--primary);font-weight:600}.detail-badge{display:inline-block;background:var(--primary-bg);color:var(--primary);padding:5px 12px;border-radius:20px;margin-bottom:14px}
+    @media(max-width:700px){.detail-main{padding:24px 16px 60px}.detail-grid{grid-template-columns:1fr;gap:24px}.detail-info h1{font-size:1.7rem}.detail-price{font-size:1.6rem}.detail-image{max-height:440px}.detail-back{margin-bottom:22px}}
+  </style>
+</head>
+<body>
+<main class="detail-main">
+  <a class="detail-back" href="index.html#products">← Về cửa hàng</a>
+  <p id="productLoading" role="status">Đang tải sản phẩm…</p>
+  <section id="productDetail" class="detail-grid" hidden>
+    <div class="detail-image"><img id="detailImage" alt=""></div>
+    <div class="detail-info">
+      <span id="detailCategory" class="detail-badge"></span>
+      <h1 id="detailName"></h1><p id="detailPrice" class="detail-price"></p>
+      <p id="detailDescription" class="detail-description"></p><p id="detailStock" class="detail-stock"></p>
+      <div class="detail-quantity"><label for="detailQuantity">Số lượng</label><div class="quantity-control"><button id="quantityMinus" type="button" aria-label="Giảm số lượng">−</button><input id="detailQuantity" type="number" min="1" max="99" value="1" inputmode="numeric"><button id="quantityPlus" type="button" aria-label="Tăng số lượng">+</button></div></div>
+      <button id="detailAdd" class="detail-add" type="button">Thêm vào giỏ hàng</button>
+      <p id="detailMessage" class="detail-message" role="status" aria-live="polite"></p>
+      <div class="detail-actions"><a href="index.html#contact" id="detailCheckout" hidden>Tiếp tục đặt hàng →</a><a href="orders.html">Đơn hàng của tôi</a></div>
+    </div>
+  </section>
+</main>
+<script src="cloud.js"></script><script src="product.js"></script>
+<script src="chatbot.js"></script></body></html>

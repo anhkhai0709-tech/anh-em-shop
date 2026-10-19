@@ -1,0 +1,13 @@
+{
+  "name": "anh-em-shop",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node local-dev.mjs",
+    "build": "node build.mjs",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

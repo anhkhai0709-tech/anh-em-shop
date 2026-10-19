@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đơn hàng của tôi - Anh Em Shop</title>
+  <link rel="icon" href="assets/icons/favicon.svg">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .orders-heading{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+    .order-card{border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:20px;background:var(--bg-card,#fff)}
+    .order-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+    .order-status{padding:6px 12px;border-radius:20px;font-weight:700;font-size:.9rem}
+    .order-status.pending{background:#fff3cd;color:#775b00}.order-status.approved{background:#dcfce7;color:#166534}.order-status.shipping{background:#dbeafe;color:#1e40af}.order-status.cancelled{background:#fee2e2;color:#991b1b}
+    .order-meta{color:var(--text-secondary);font-size:.9rem;margin:8px 0;overflow-wrap:anywhere}
+    .order-item{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid var(--border)}
+    .order-total{text-align:right;margin-top:16px;font-weight:700;color:var(--primary)}
+    .orders-message{padding:24px;border:1px solid var(--border);border-radius:12px}
+    @media(max-width:600px){.order-card{padding:16px}.header__container{flex-wrap:wrap}.header__logo{font-size:1rem}}
+  </style>
+</head>
+<body>
+  <header class="header"><div class="container header__container">
+    <a href="index.html" class="header__logo">Anh Em Shop</a>
+    <a href="index.html" class="btn btn--sm btn--outline">← Về cửa hàng</a>
+  </div></header>
+  <main class="container" style="padding-top:110px;padding-bottom:60px;max-width:850px">
+    <div class="orders-heading"><div><h1>Đơn hàng của tôi</h1><p>Theo dõi đơn hàng và trạng thái xử lý của cửa hàng.</p></div><button id="refreshOrders" class="btn btn--outline">Cập nhật trạng thái</button></div>
+    <p id="ordersMessage" role="status" aria-live="polite" style="margin-bottom:16px">Đang tải đơn hàng…</p>
+    <div id="myOrders" aria-busy="true"></div>
+  </main>
+  <script src="cloud.js"></script><script src="orders.js"></script>
+  <script src="chatbot.js"></script>
+</body>
+</html>

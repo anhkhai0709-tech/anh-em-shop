@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Anh Em Shop - Thời Trang Việt Nam</title>
+    <meta name="description" content="Khám phá thời trang nam, nữ và phụ kiện tại Anh Em Shop. Chọn sản phẩm và đặt hàng trực tuyến.">
+    <meta name="keywords" content="thời trang, quần áo, mua sắm, Anh Em Shop">
+    <meta name="author" content="Anh Em Shop">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Anh Em Shop - Thời Trang Việt Nam">
+    <meta property="og:description" content="Thời trang nam, nữ và phụ kiện. Đặt hàng trực tuyến tại Anh Em Shop.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="vi_VN">
+
+    <!-- Favicon SVG -->
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ========== HEADER ========== -->
+    <header class="header" id="header">
+        <div class="container header__container">
+            <a href="#" class="header__logo">
+                <svg class="header__logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="40" height="40" rx="10" fill="url(#logo-grad)"/>
+                    <path d="M12 28V14l8 6 8-6v14" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs><linearGradient id="logo-grad" x1="0" y1="0" x2="40" y2="40"><stop stop-color="#6366f1"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs>
+                </svg>
+                <span>Anh Em Shop</span>
+            </a>
+
+            <nav class="header__nav" id="navbar">
+                <ul class="header__menu">
+                    <li><a href="#hero" class="header__link active">Trang chủ</a></li>
+                    <li><a href="#products" class="header__link">Sản phẩm</a></li>
+                    <li><a href="#why-us" class="header__link">Ưu điểm</a></li>
+                    <li><a href="#contact" class="header__link">Liên hệ</a></li>
+                </ul>
+            </nav>
+
+            <div class="header__actions">
+                <button class="header__cart-btn" id="cartToggleBtn" aria-label="Giỏ hàng">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                    <span class="cart-badge" id="cartBadgeCount">0</span>
+                </button>
+                
+                <!-- Auth Widget -->
+                <div id="authHeaderWidget">
+                    <button class="btn btn--outline btn--sm" id="openAuthModalBtn">Đăng nhập</button>
+                </div>
+
+                <a href="#contact" class="btn btn--primary header__cta">Liên hệ ngay</a>
+            </div>
+
+            <button class="header__hamburger" id="hamburger" aria-label="Mở menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="hero">
+        <div class="container hero__container">
+            <div class="hero__content animate-on-scroll">
+                <span class="hero__badge">🔥 Bộ sưu tập mới 2026</span>
+                <h1 class="hero__title">Anh Em Shop - Phong Cách <span class="text-gradient">Thời Trang</span> Dẫn Đầu Xu Hướng</h1>
+                <p class="hero__desc">Khám phá bộ sưu tập thời trang mới nhất với thiết kế độc đáo, chất liệu cao cấp và giá cả hợp lý. Tự tin tỏa sáng mỗi ngày cùng Anh Em Shop.</p>
+                <div class="hero__actions">
+                    <a href="#products" class="btn btn--primary btn--lg">Tìm hiểu thêm</a>
+                    <a href="#contact" class="btn btn--outline btn--lg">Liên hệ ngay</a>
+                </div>
+            </div>
+            <div class="hero__image animate-on-scroll">
+                <img src="assets/images/anhnenweb.jpg" alt="Anh Em Shop" class="hero__illustration">
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PRODUCTS ========== -->
+    <section class="products section" id="products">
+        <div class="container">
+            <div class="section__header animate-on-scroll">
+                <span class="section__tag">Sản phẩm</span>
+                <h2 class="section__title">Bộ Sưu Tập <span class="text-gradient">Nổi Bật</span></h2>
+                <p class="section__desc">Khám phá những sản phẩm thời trang được yêu thích nhất tại Anh Em Shop</p>
+            </div>
+
+            <div class="products__filter animate-on-scroll">
+                <button class="filter-btn active" data-filter="all">Tất cả</button>
+                <button class="filter-btn" data-filter="nam">Thời trang Nam</button>
+                <button class="filter-btn" data-filter="nu">Thời trang Nữ</button>
+                <button class="filter-btn" data-filter="phukien">Phụ kiện</button>
+            </div>
+
+            <div class="products__search animate-on-scroll">
+                <svg class="products__search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                <input type="text" class="products__search-input" id="searchInput" placeholder="Tìm kiếm sản phẩm..." aria-label="Tìm kiếm sản phẩm">
+            </div>
+
+            <div class="products__grid" id="productsGrid">
+                <!-- Áo Hoàng Gia -->
+                <article class="product-card animate-on-scroll" data-category="nam">
+                    <div class="product-card__image">
+                        <img src="assets/images/aohoanggia.jpg" alt="áo hoàng gia" loading="lazy" onerror="this.onerror=null; this.src='assets/images/anhaolv.jpg';">
+                        <span class="product-card__badge product-card__badge--hot">Hot</span>
+                    </div>
+                    <div class="product-card__content">
+                        <h3 class="product-card__name">áo hoàng gia</h3>
+                        <p class="product-card__desc">Phong cách hoàng gia sang trọng, chất liệu vải mềm mại thoáng mát.</p>
+                        <div class="product-card__footer">
+                            <div class="product-card__price-row">
+                                <span class="product-card__price">120.000₫</span>
+                            </div>
+                            <div class="product-card__actions">
+                                <button class="btn btn--sm btn--outline add-to-cart-btn" data-id="ao-hoang-gia" data-name="áo hoàng gia" data-price="120000" data-img="assets/images/aohoanggia.jpg">
+                                    + Giỏ hàng
+                                </button>
+                                <button class="btn btn--sm btn--primary buy-now-btn" data-id="ao-hoang-gia" data-name="áo hoàng gia" data-price="120000" data-img="assets/images/aohoanggia.jpg">
+                                    Mua ngay
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Áo Chó -->
+                <article class="product-card animate-on-scroll" data-category="nu">
+                    <div class="product-card__image">
+                        <img src="assets/images/aochonu.jpg" alt="áo chó" loading="lazy" onerror="this.onerror=null; this.src='assets/images/khoacgc.jpg';">
+                        <span class="product-card__badge">Mới</span>
+                    </div>
+                    <div class="product-card__content">
+                        <h3 class="product-card__name">áo chó</h3>
+                        <p class="product-card__desc">Thời trang nữ chất liệu cao cấp, kiểu dáng thời thượng cá tính.</p>
+                        <div class="product-card__footer">
+                            <div class="product-card__price-row">
+                                <span class="product-card__price">199.999₫</span>
+                            </div>
+                            <div class="product-card__actions">
+                                <button class="btn btn--sm btn--outline add-to-cart-btn" data-id="ao-cho" data-name="áo chó" data-price="199999" data-img="assets/images/aochonu.jpg">
+                                    + Giỏ hàng
+                                </button>
+                                <button class="btn btn--sm btn--primary buy-now-btn" data-id="ao-cho" data-name="áo chó" data-price="199999" data-img="assets/images/aochonu.jpg">
+                                    Mua ngay
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Váy New -->
+                <article class="product-card animate-on-scroll" data-category="nu">
+                    <div class="product-card__image">
+                        <img src="assets/images/vay.jpg" alt="Váy new" loading="lazy" onerror="this.onerror=null; this.src='assets/images/tuilv.jpg';">
+                        <span class="product-card__badge product-card__badge--hot">Hot</span>
+                    </div>
+                    <div class="product-card__content">
+                        <h3 class="product-card__name">Váy new</h3>
+                        <p class="product-card__desc">Váy nữ thiết kế ren lộng lẫy quyến rũ, kiểu dáng tôn dáng quyến rũ.</p>
+                        <div class="product-card__footer">
+                            <div class="product-card__price-row">
+                                <span class="product-card__price">499.999₫</span>
+                            </div>
+                            <div class="product-card__actions">
+                                <button class="btn btn--sm btn--outline add-to-cart-btn" data-id="vay-new" data-name="Váy new" data-price="499999" data-img="assets/images/vay.jpg">
+                                    + Giỏ hàng
+                                </button>
+                                <button class="btn btn--sm btn--primary buy-now-btn" data-id="vay-new" data-name="Váy new" data-price="499999" data-img="assets/images/vay.jpg">
+                                    Mua ngay
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Phông Micky -->
+                <article class="product-card animate-on-scroll" data-category="nu">
+                    <div class="product-card__image">
+                        <img src="assets/images/aogaunu.jpg" alt="phông micky" loading="lazy" onerror="this.onerror=null; this.src='assets/images/dephm.jpg';">
+                        <span class="product-card__badge product-card__badge--hot">Hot</span>
+                    </div>
+                    <div class="product-card__content">
+                        <h3 class="product-card__name">phông micky</h3>
+                        <p class="product-card__desc">Áo phông micky nữ dễ thương, vải cotton mềm mịn thoáng mát.</p>
+                        <div class="product-card__footer">
+                            <div class="product-card__price-row">
+                                <span class="product-card__price">199.999₫</span>
+                            </div>
+                            <div class="product-card__actions">
+                                <button class="btn btn--sm btn--outline add-to-cart-btn" data-id="phong-micky" data-name="phông micky" data-price="199999" data-img="assets/images/aogaunu.jpg">
+                                    + Giỏ hàng
+                                </button>
+                                <button class="btn btn--sm btn--primary buy-now-btn" data-id="phong-micky" data-name="phông micky" data-price="199999" data-img="assets/images/aogaunu.jpg">
+                                    Mua ngay
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Áo Phông LV -->
+                <article class="product-card animate-on-scroll" data-category="nam">
+                    <div class="product-card__image">
+                        <img src="assets/images/anhaolv.jpg" alt="Áo Phông LV" loading="lazy">
+                        <span class="product-card__badge product-card__badge--hot">Hot</span>
+                    </div>
+                    <div class="product-card__content">
+                        <h3 class="product-card__name">Áo phông LV</h3>
+                        <p class="product-card__desc">Hàng mới về cực chất cho anh em, chất liệu cotton cao cấp thoáng mát.</p>
+                        <div class="product-card__footer">
+                            <div class="product-card__price-row">
+                                <span class="product-card__price">300.000₫</span>
+                            </div>
+                            <div class="product-card__actions">
+                                <button class="btn btn--sm btn--outline add-to-cart-btn" data-id="ao-phong-lv" data-name="Áo phông LV" data-price="300000" data-img="assets/images/anhaolv.jpg">
+                                    + Giỏ hàng
+                                </button>
+                                <button class="btn btn--sm btn--primary buy-now-btn" data-id="ao-phong-lv" data-name="Áo phông LV" data-price="300000" data-img="assets/images/anhaolv.jpg">
+                                    Mua ngay
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Áo Khoác Gucci -->
+                <article class="product-card animate-on-scroll" data-category="nam">
+                    <div class="product-card__image">
+                        <img src="assets/images/khoacgc.jpg" alt="Áo khoác Gucci" loading="lazy">
+                        <span class="product-card__badge">Mới</span>
+                    </div>
+                    <div class="product-card__content">
+                        <h3 class="product-card__name">Áo khoác Gucci</h3>
+                        <p class="product-card__desc">Phong cách cao cấp, kiểu dáng thời thượng không có gì để chê.</p>
+                        <div class="product-card__footer">
+                            <div class="product-card__price-row">
+                                <span class="product-card__price">500.000₫</span>
+                            </div>
+                            <div class="product-card__actions">
+                                <button class="btn btn--sm btn--outline add-to-cart-btn" data-id="ao-khoac-gucci" data-name="Áo khoác Gucci" data-price="500000" data-img="assets/images/khoacgc.jpg">
+                                    + Giỏ hàng
+                                </button>
+                                <button class="btn btn--sm btn--primary buy-now-btn" data-id="ao-khoac-gucci" data-name="Áo khoác Gucci" data-price="500000" data-img="assets/images/khoacgc.jpg">
+                                    Mua ngay
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Giày JD -->
+                <article class="product-card animate-on-scroll" data-category="phukien">
+                    <div class="product-card__image">
+                        <img src="assets/images/giayjd.jpg" alt="Giày JD" loading="lazy">
+                        <span class="product-card__badge product-card__badge--hot">Hot</span>
+                    </div>
+                    <div class="product-card__content">
+                        <h3 class="product-card__name">Giày JD</h3>
+                        <p class="product-card__desc">Thiết kế thời thượng, chất liệu cao cấp, phối đồ cực ngầu.</p>
+                        <div class="product-card__footer">
+                            <div class="product-card__price-row">
+                                <span class="product-card__price">700.000₫</span>
+                            </div>
+                            <div class="product-card__actions">
+                                <button class="btn btn--sm btn--outline add-to-cart-btn" data-id="giay-jd" data-name="Giày JD" data-price="700000" data-img="assets/images/giayjd.jpg">
+                                    + Giỏ hàng
+                                </button>
+                                <button class="btn btn--sm btn--primary buy-now-btn" data-id="giay-jd" data-name="Giày JD" data-price="700000" data-img="assets/images/giayjd.jpg">
+                                    Mua ngay
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Túi Xách LV -->
+                <article class="product-card animate-on-scroll" data-category="phukien">
+                    <div class="product-card__image">
+                        <img src="assets/images/tuilv.jpg" alt="Túi Xách LV" loading="lazy">
+                        <span class="product-card__badge product-card__badge--hot">Hot</span>
+                    </div>
+                    <div class="product-card__content">
+                        <h3 class="product-card__name">Túi Xách LV</h3>
+                        <p class="product-card__desc">Thiết kế sang trọng, ngăn chứa rộng rãi, phù hợp mọi outfit.</p>
+                        <div class="product-card__footer">
+                            <div class="product-card__price-row">
+                                <span class="product-card__price">300.000₫</span>
+                            </div>
+                            <div class="product-card__actions">
+                                <button class="btn btn--sm btn--outline add-to-cart-btn" data-id="tui-xach-lv" data-name="Túi Xách LV" data-price="300000" data-img="assets/images/tuilv.jpg">
+                                    + Giỏ hàng
+                                </button>
+                                <button class="btn btn--sm btn--primary buy-now-btn" data-id="tui-xach-lv" data-name="Túi Xách LV" data-price="300000" data-img="assets/images/tuilv.jpg">
+                                    Mua ngay
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Dép Hermes -->
+                <article class="product-card animate-on-scroll" data-category="phukien">
+                    <div class="product-card__image">
+                        <img src="assets/images/dephm.jpg" alt="Dép Hermes" loading="lazy">
+                        <span class="product-card__badge">Mới</span>
+                    </div>
+                    <div class="product-card__content">
+                        <h3 class="product-card__name">Dép Hermes</h3>
+                        <p class="product-card__desc">Chất liệu da êm ái, kiểu dáng quai chữ H sang trọng và lịch sự.</p>
+                        <div class="product-card__footer">
+                            <div class="product-card__price-row">
+                                <span class="product-card__price">350.000₫</span>
+                            </div>
+                            <div class="product-card__actions">
+                                <button class="btn btn--sm btn--outline add-to-cart-btn" data-id="dep-hermes" data-name="Dép Hermes" data-price="350000" data-img="assets/images/dephm.jpg">
+                                    + Giỏ hàng
+                                </button>
+                                <button class="btn btn--sm btn--primary buy-now-btn" data-id="dep-hermes" data-name="Dép Hermes" data-price="350000" data-img="assets/images/dephm.jpg">
+                                    Mua ngay
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== WHY US ========== -->
+    <section class="why-us section" id="why-us">
+        <div class="container">
+            <div class="section__header animate-on-scroll">
+                <span class="section__tag">Tại sao chọn chúng tôi</span>
+                <h2 class="section__title">Cam Kết <span class="text-gradient">Chất Lượng</span></h2>
+                <p class="section__desc">Mua sắm dễ dàng cùng Anh Em Shop</p>
+            </div>
+
+            <div class="why-us__grid">
+                <div class="why-us__card animate-on-scroll">
+                    <div class="why-us__icon">
+                        <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="24" fill="#eef2ff"/><path d="M16 24l4 4 12-12" stroke="#6366f1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="24" r="10" stroke="#6366f1" stroke-width="2" fill="none"/></svg>
+                    </div>
+                    <h3 class="why-us__title">Chất Lượng Cao Cấp</h3>
+                    <p class="why-us__desc">Mỗi sản phẩm đều được kiểm tra chất lượng nghiêm ngặt, đảm bảo tiêu chuẩn quốc tế.</p>
+                </div>
+                <div class="why-us__card animate-on-scroll">
+                    <div class="why-us__icon">
+                        <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="24" fill="#fdf2f8"/><path d="M24 14l2.5 5 5.5.8-4 3.9.9 5.3-4.9-2.6L19.1 30l.9-5.3-4-3.9 5.5-.8z" fill="#ec4899"/></svg>
+                    </div>
+                    <h3 class="why-us__title">Uy Tín Hàng Đầu</h3>
+                    <p class="why-us__desc">Theo dõi từng đơn hàng và trạng thái duyệt ngay trong tài khoản.</p>
+                </div>
+                <div class="why-us__card animate-on-scroll">
+                    <div class="why-us__icon">
+                        <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="24" fill="#f0fdf4"/><text x="24" y="30" text-anchor="middle" fill="#22c55e" font-size="18" font-weight="700">₫</text></svg>
+                    </div>
+                    <h3 class="why-us__title">Giá Cả Hợp Lý</h3>
+                    <p class="why-us__desc">Cam kết giá tốt nhất thị trường, nhiều chương trình khuyến mãi hấp dẫn quanh năm.</p>
+                </div>
+                <div class="why-us__card animate-on-scroll">
+                    <div class="why-us__icon">
+                        <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="24" fill="#fff7ed"/><path d="M16 32v-4a8 8 0 1116 0v4" stroke="#f97316" stroke-width="2.5" stroke-linecap="round"/><circle cx="24" cy="18" r="4" fill="#f97316"/></svg>
+                    </div>
+                    <h3 class="why-us__title">Hỗ Trợ 24/7</h3>
+                    <p class="why-us__desc">Đội ngũ chăm sóc khách hàng luôn sẵn sàng hỗ trợ bạn mọi lúc, mọi nơi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CONTACT ========== -->
+    <section class="contact section" id="contact">
+        <div class="container">
+            <div class="section__header animate-on-scroll">
+                <span class="section__tag">Liên hệ & Đặt hàng</span>
+                <h2 class="section__title">Liên Hệ <span class="text-gradient">Đặt Hàng Ngay</span></h2>
+                <p class="section__desc">Hãy để lại thông tin hoặc danh sách giỏ hàng, chúng tôi sẽ liên hệ tư vấn và chốt đơn ngay cho bạn!</p>
+            </div>
+
+            <div class="contact__grid">
+                <div class="contact__info animate-on-scroll">
+                    <div class="contact__info-item">
+                        <div class="contact__info-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        </div>
+                        <div>
+                            <h4>Địa chỉ</h4>
+                            <p>Cửa hàng trực tuyến</p>
+                        </div>
+                    </div>
+                    <div class="contact__info-item">
+                        <div class="contact__info-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>Chưa công bố email liên hệ</p>
+                        </div>
+                    </div>
+                    <div class="contact__info-item">
+                        <div class="contact__info-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        </div>
+                        <div>
+                            <h4>Số điện thoại / Zalo</h4>
+                            <p>Chưa công bố số điện thoại</p>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact__form animate-on-scroll" id="contactForm" novalidate>
+                    <div class="form__group">
+                        <label for="fullName" class="form__label">Họ và tên <span class="required">*</span></label>
+                        <input type="text" id="fullName" name="fullName" class="form__input" placeholder="Nhập họ và tên" required>
+                        <span class="form__error" id="fullNameError"></span>
+                    </div>
+                    <div class="form__group">
+                        <label for="phone" class="form__label">Số điện thoại <span class="required">*</span></label>
+                        <input type="tel" id="phone" name="phone" class="form__input" placeholder="Nhập số điện thoại" required>
+                        <span class="form__error" id="phoneError"></span>
+                    </div>
+                    <div class="form__group">
+                        <label for="address" class="form__label">Địa chỉ giao hàng <span class="required">*</span></label>
+                        <input type="text" id="address" name="address" class="form__input" placeholder="Nhập địa chỉ nhận hàng (Số nhà, đường, xã/phường, tỉnh/thành)" required>
+                        <span class="form__error" id="addressError"></span>
+                    </div>
+                    <div class="form__group">
+                        <label for="email" class="form__label">Email (Không bắt buộc)</label>
+                        <input type="email" id="email" name="email" class="form__input" placeholder="Nhập email">
+                        <span class="form__error" id="emailError"></span>
+                    </div>
+                    <div class="form__group">
+                        <label for="message" class="form__label">Nội dung / Ghi chú đơn hàng</label>
+                        <textarea id="message" name="message" class="form__input form__textarea" placeholder="Nhập ghi chú đơn hàng hoặc câu hỏi của bạn" rows="4"></textarea>
+                        <span class="form__error" id="messageError"></span>
+                    </div>
+                    <button type="submit" class="btn btn--primary btn--lg btn--full">Gửi đơn hàng / Liên hệ</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__brand">
+                    <a href="#" class="footer__logo">
+                        <svg class="footer__logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="40" height="40" rx="10" fill="url(#logo-grad-f)"/>
+                            <path d="M12 28V14l8 6 8-6v14" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <defs><linearGradient id="logo-grad-f" x1="0" y1="0" x2="40" y2="40"><stop stop-color="#6366f1"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs>
+                        </svg>
+                        <span>Anh Em Shop</span>
+                    </a>
+                    <p class="footer__text">Thời trang chất lượng, phong cách hiện đại, giá cả hợp lý cho người Việt.</p>
+                </div>
+
+                <div class="footer__links">
+                    <h4 class="footer__heading">Liên kết nhanh</h4>
+                    <ul>
+                        <li><a href="#hero">Trang chủ</a></li>
+                        <li><a href="#products">Sản phẩm</a></li>
+                        <li><a href="#why-us">Ưu điểm</a></li>
+                        <li><a href="#contact">Liên hệ</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__contact">
+                    <h4 class="footer__heading">Liên hệ</h4>
+                    <ul>
+                        <li>📍 Cửa hàng trực tuyến</li>
+                        <li>✉️ Chưa công bố email liên hệ</li>
+                        <li>📞 Chưa công bố số điện thoại</li>
+                    </ul>
+                </div>
+
+                <div class="footer__social">
+                    <h4 class="footer__heading">Theo dõi chúng tôi</h4>
+                    <div class="footer__social-links">
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="footer__social-link">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                        </a>
+                        <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="footer__social-link">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <p>&copy; 2026 Anh Em Shop. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== BACK TO TOP ========== -->
+    <button class="back-to-top" id="backToTop" aria-label="Về đầu trang">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+    </button>
+
+    <!-- ========== TOAST NOTIFICATION ========== -->
+    <div class="toast" id="toast">
+        <div class="toast__content">
+            <svg class="toast__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <span class="toast__message" id="toastMessage">Thành công!</span>
+        </div>
+        <button class="toast__close" id="toastClose" aria-label="Đóng thông báo">&times;</button>
+    </div>
+
+    <!-- ========== CART DRAWER ========== -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <aside class="cart-drawer" id="cartDrawer" aria-label="Giỏ hàng">
+        <div class="cart-drawer__header">
+            <h3>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                Giỏ hàng của bạn (<span id="cartTotalCount">0</span>)
+            </h3>
+            <button class="cart-drawer__close" id="cartCloseBtn" aria-label="Đóng giỏ hàng">&times;</button>
+        </div>
+        <div class="cart-drawer__body" id="cartDrawerBody">
+            <!-- Dynamic Cart Items -->
+        </div>
+        <div class="cart-drawer__footer" id="cartDrawerFooter">
+            <div class="cart-drawer__summary">
+                <span>Tổng tiền:</span>
+                <strong class="cart-drawer__total-price" id="cartTotalPrice">0₫</strong>
+            </div>
+            <div class="cart-drawer__btns">
+                <button class="btn btn--outline btn--sm" id="clearCartBtn">Xóa tất cả</button>
+                <button class="btn btn--primary btn--full" id="checkoutBtn">Đặt hàng ngay</button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ========== AUTH MODAL (ĐĂNG NHẬP / ĐĂNG KÝ) ========== -->
+    <div class="modal-overlay" id="authModalOverlay">
+        <div class="modal-box" style="max-width: 420px;">
+            <div class="modal-header">
+                <div class="auth-tabs" style="display:flex;gap:12px;">
+                    <button class="auth-tab active" id="tabLoginBtn" style="font-size:1.1rem;font-weight:700;border-bottom:2px solid var(--primary);padding-bottom:4px;">Đăng nhập</button>
+                    <button class="auth-tab" id="tabRegisterBtn" style="font-size:1.1rem;font-weight:700;color:var(--text-muted);padding-bottom:4px;">Đăng ký</button>
+                </div>
+                <button class="modal-close" id="closeAuthModalBtn">&times;</button>
+            </div>
+            
+            <!-- Login Form -->
+            <form id="loginForm" class="modal-body">
+                <div style="background:#eef2ff;color:var(--primary);padding:10px 14px;border-radius:8px;margin-bottom:14px;font-size:0.85rem;font-weight:600;text-align:center;line-height:1.4;">
+                    🛍️ Vui lòng Đăng nhập hoặc Đăng ký để hoàn tất mua hàng!
+                </div>
+                <div class="form__group">
+                    <label class="form__label">Tên đăng nhập / Email *</label>
+                    <input type="text" id="loginUsername" class="form__input" placeholder="Nhập tên đăng nhập hoặc email" required>
+                </div>
+                <div class="form__group">
+                    <label class="form__label">Mật khẩu *</label>
+                    <input type="password" id="loginPassword" class="form__input" placeholder="Nhập mật khẩu" required>
+                </div>
+                <button type="submit" class="btn btn--primary btn--full">Đăng Nhập</button>
+            </form>
+
+            <!-- Register Form -->
+            <form id="registerForm" class="modal-body" style="display:none;">
+                <div class="form__group">
+                    <label class="form__label">Tên đăng nhập *</label>
+                    <input type="text" id="regUsername" class="form__input" placeholder="Tên tài khoản" required>
+                </div>
+                <div class="form__group">
+                    <label class="form__label">Email *</label>
+                    <input type="email" id="regEmail" class="form__input" placeholder="Email nhận thông tin" required>
+                </div>
+                <div class="form__group">
+                    <label class="form__label">Mật khẩu *</label>
+                    <input type="password" id="regPassword" class="form__input" placeholder="Tối thiểu 8 ký tự" minlength="8" required>
+                </div>
+                <button type="submit" class="btn btn--primary btn--full">Tạo Tài Khoản</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Script -->
+    <script src="cloud.js"></script>
+    <script src="script.js"></script>
+    <script src="chatbot.js"></script>
+</body>
+</html>
