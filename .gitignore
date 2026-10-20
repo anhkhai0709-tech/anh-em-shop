@@ -7,3 +7,9 @@ public/
 *.log
 
 .local/
+
+visualization/env
+server/visualization/env
+**/__pycache__/
+visualization/.venv/
+visualization/.packages/

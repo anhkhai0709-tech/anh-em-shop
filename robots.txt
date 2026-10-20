@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin
+Disallow: /analytics
+Disallow: /orders
+Sitemap: https://anh-em-shop.pages.dev/sitemap.xml
