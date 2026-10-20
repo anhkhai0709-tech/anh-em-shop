@@ -3,7 +3,7 @@
 -- time la timestamp sau khi ingest; dau vao gui epoch milliseconds.
 SELECT COUNT(DISTINCT json_get_str(meta, 'event_id')) AS luot_xem_24h
 FROM ten_namespace.ten_bang
-WHERE id = 'nhóm 7'
+WHERE id = '07'
   AND time >= now() - INTERVAL '24 hours'
   AND json_get_str(meta, 'site') = 'anh-em-shop'
   AND json_get_str(meta, 'event') = 'page_view'

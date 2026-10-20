@@ -1,6 +1,6 @@
 # Ket noi Stream cua giang vien
 
-Website chi gui page_view moi voi id = nhóm 7. Dau vao: id, country, device, time (Date.now(), milliseconds), ip, meta. meta co site, event, event_id, path, os, browser, device_type, referrer va test=false. Khong gui ten, email, mat khau hay noi dung chat.
+Website chi gui page_view moi voi id = 07. Dau vao: id, country, device, time (Date.now(), milliseconds), ip, meta. meta co site, event, event_id, path, os, browser, device_type, referrer va test=false. Khong gui ten, email, mat khau hay noi dung chat.
 
 POST gui mot mang JSON theo tai lieu Cloudflare. Phan hoi accepted/HTTP 2xx chi xac nhan endpoint nhan request, khong chung minh ban ghi da qua schema, pipeline va vao Basin. Kiem tra schema error metrics va bang dich ben giang vien. Khong tu dong retry de tranh dem trung; su kien loi van con o D1, chua co co che gui lai tu dong. Thong ke D1 va Basin co the lech neu gui that bai hoac pipeline dang cho xu ly.
 
