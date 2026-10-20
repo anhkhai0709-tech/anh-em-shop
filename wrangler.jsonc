@@ -1,1 +1,19 @@
-{"name":"anh-em-shop","compatibility_date":"2026-10-01","pages_build_output_dir":"public","ai":{"binding":"AI"},"d1_databases":[{"binding":"DB","database_name":"anh-em-shop-db","database_id":"2ae76cf7-563e-4ced-9d7a-2da288eca601"}]}
+{
+  "name": "anh-em-shop",
+  "compatibility_date": "2026-10-01",
+  "pages_build_output_dir": "public",
+  "ai": {
+    "binding": "AI"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "anh-em-shop-db",
+      "database_id": "2ae76cf7-563e-4ced-9d7a-2da288eca601"
+    }
+  ],
+  "vars": {
+    "BASIN_INGEST_URL": "https://f8fb6f6f730b404fb2f273fd789d04df.ingest.cloudflare.com",
+    "BASIN_GROUP_ID": "nhóm 7"
+  }
+}

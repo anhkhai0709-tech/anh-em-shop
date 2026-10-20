@@ -1,3 +1,4 @@
+import { basinRecord, sendBasin } from '../../server/basin.js';
 import { answerChat } from '../../server/ai-chat.js';
 const enc=new TextEncoder(), hex=b=>Array.from(new Uint8Array(b),v=>v.toString(16).padStart(2,'0')).join('');
 export async function hash(password,salt=hex(crypto.getRandomValues(new Uint8Array(16)))) { const key=await crypto.subtle.importKey('raw',enc.encode(password),'PBKDF2',false,['deriveBits']); return 'pbkdf2$'+salt+'$'+hex(await crypto.subtle.deriveBits({name:'PBKDF2',salt:enc.encode(salt),iterations:100000,hash:'SHA-256'},key,256)); }
@@ -20,13 +21,15 @@ export async function onRequest({request,env}) {
    const ua=request.headers.get('User-Agent')||'',device=/iPad|Tablet/i.test(ua)?'Tablet':/Mobile|Android|iPhone/i.test(ua)?'Mobile':'Desktop',browser=/Edg/i.test(ua)?'Edge':/Firefox/i.test(ua)?'Firefox':/Chrome/i.test(ua)?'Chrome':/Safari/i.test(ua)?'Safari':'Other',os=/Windows/i.test(ua)?'Windows':/Android/i.test(ua)?'Android':/iPhone|iPad/i.test(ua)?'iOS':/Mac OS/i.test(ua)?'macOS':/Linux/i.test(ua)?'Linux':'Other';
    let referrer='Direct';try{referrer=new URL(b.referrer).hostname.slice(0,150)}catch{}
    await env.DB.batch([env.DB.prepare('INSERT INTO analytics_events(event,path,referrer,device,browser,os,ip,country,city,user_id) VALUES(?,?,?,?,?,?,?,?,?,?)').bind(b.event,path,referrer,device,browser,os,text(request.headers.get('CF-Connecting-IP'),60)||'Local',text(request.cf?.country,10),text(request.cf?.city,100),user?.id||null),env.DB.prepare("DELETE FROM analytics_events WHERE created_at < datetime('now','-30 days')")]);
-   return json({ok:true},201);
+   const stream=b.event==='page_view'?await sendBasin(env,basinRecord(request,env.BASIN_GROUP_ID||'nhóm 7',path,device,os,browser,referrer)):{status:'not_page_view'};
+   return json({ok:true,stream},201);
   }
   if(path==='/analytics'&&method==='GET'){
    admin();const total=await env.DB.prepare("SELECT COUNT(*) events,COUNT(DISTINCT ip) visitors,SUM(CASE WHEN event='page_view' THEN 1 ELSE 0 END) page_views FROM analytics_events WHERE created_at>=datetime('now','-30 days')").first();
    const rows=(await env.DB.prepare("SELECT * FROM analytics_events WHERE created_at>=datetime('now','-30 days') ORDER BY id DESC LIMIT 200").all()).results;
    const grouped=async field=>(await env.DB.prepare('SELECT '+field+" label,COUNT(*) count FROM analytics_events WHERE created_at>=datetime('now','-30 days') GROUP BY "+field+' ORDER BY count DESC LIMIT 12').all()).results;
-   return json({total,rows,devices:await grouped('device'),sources:await grouped('referrer'),actions:await grouped('event'),countries:await grouped('country')});
+   const last24=await env.DB.prepare("SELECT COUNT(*) page_views FROM analytics_events WHERE event='page_view' AND created_at>=datetime('now','-24 hours')").first();
+   return json({total,last24,basin:{enabled:Boolean(env.BASIN_INGEST_URL),group:env.BASIN_GROUP_ID||'nhóm 7',query_available:false},rows,devices:await grouped('device'),sources:await grouped('referrer'),actions:await grouped('event'),countries:await grouped('country')});
   }
   if(path==='/chat'&&method==='POST'){
    const body=await request.json();
